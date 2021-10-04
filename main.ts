@@ -2,9 +2,10 @@ let Xxx = 0
 let Yyy = 0
 input.onPinPressed(TouchPin.P0, function () {
     basic.clearScreen()
-    lightup(4, 4, -1, -1)
+    lightupTypical(4, 4, -1, -1)
 })
-function lightup (Horizontalstart: number, Verticalstart: number, Horizontalstep: number, Verticalstep: number) {
+// assume start at top 0,0
+function lightupTypical (Horizontalstart: number, Verticalstart: number, Horizontalstep: number, Verticalstep: number) {
     Xxx = Horizontalstart
     Yyy = Verticalstart
     for (let index = 0; index < 5; index++) {
@@ -19,9 +20,18 @@ function lightup (Horizontalstart: number, Verticalstart: number, Horizontalstep
 }
 input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
-    lightup2(0, 0, 1, 1)
+    lightupReverse(0, 0, 1, 1)
 })
-function lightup2 (Horizontalstart: number, Verticalstart: number, Horizontalstep: number, Verticalstep: number) {
+input.onButtonPressed(Button.B, function () {
+    basic.clearScreen()
+    lightupReverse(4, 4, -1, -1)
+})
+input.onPinPressed(TouchPin.P1, function () {
+    basic.clearScreen()
+    lightupTypical(0, 0, 1, 1)
+})
+// assume start at bottom 4,4
+function lightupReverse (Horizontalstart: number, Verticalstart: number, Horizontalstep: number, Verticalstep: number) {
     Xxx = Horizontalstart
     Yyy = Verticalstart
     for (let index = 0; index < 5; index++) {
@@ -34,11 +44,3 @@ function lightup2 (Horizontalstart: number, Verticalstart: number, Horizontalste
         Xxx += Horizontalstep
     }
 }
-input.onButtonPressed(Button.B, function () {
-    basic.clearScreen()
-    lightup2(4, 4, -1, -1)
-})
-input.onPinPressed(TouchPin.P1, function () {
-    basic.clearScreen()
-    lightup(0, 0, 1, 1)
-})
